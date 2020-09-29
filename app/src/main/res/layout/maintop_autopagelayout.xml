@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="날짜 : 2019.08.20"
+            android:textColor="@color/c_white"
+            android:textSize="@dimen/smiddle_text" />
+
+        <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_episode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_white"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_eptime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회"
+                android:textColor="@color/c_white"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/icon_coin" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1등"
+                android:layout_marginRight="6dp"
+                android:textColor="@color/c_white"
+                android:textSize="@dimen/middle_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_winnercnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16"
+                android:textColor="@color/c_white"
+                android:textSize="@dimen/middle_text"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="명"
+                android:textColor="@color/c_white"
+                android:textSize="@dimen/middle_text"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:background="@drawable/m_ball_box"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="32dp"-->
+    <!--android:layout_height="32dp"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/c_white"-->
+    <!--android:text="21"-->
+    <!--android:textStyle="bold"-->
+    <!--android:background="@drawable/b_ball_red"/>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="32dp"-->
+    <!--android:layout_height="32dp"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/c_white"-->
+    <!--android:text="2"-->
+    <!--android:textStyle="bold"-->
+    <!--android:background="@drawable/b_ball_yellow"/>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="32dp"-->
+    <!--android:layout_height="32dp"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/c_white"-->
+    <!--android:text="30"-->
+    <!--android:textStyle="bold"-->
+    <!--android:background="@drawable/b_ball_red"/>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="32dp"-->
+    <!--android:layout_height="32dp"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/c_white"-->
+    <!--android:text="32"-->
+    <!--android:textStyle="bold"-->
+    <!--android:background="@drawable/b_ball_blue"/>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="32dp"-->
+    <!--android:layout_height="32dp"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/c_white"-->
+    <!--android:text="15"-->
+    <!--android:textStyle="bold"-->
+    <!--android:background="@drawable/b_ball_green"/>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="32dp"-->
+    <!--android:layout_height="32dp"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/c_white"-->
+    <!--android:text="42"-->
+    <!--android:textStyle="bold"-->
+    <!--android:background="@drawable/b_ball_violet"/>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:src="@drawable/b_plus"/>-->
+
+    <!--<FrameLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:padding="10dp"-->
+    <!--android:background="@drawable/s_ball_bonus">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="32dp"-->
+    <!--android:layout_height="32dp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/c_white"-->
+    <!--android:text="31"-->
+    <!--android:textStyle="bold"-->
+    <!--android:background="@drawable/b_ball_blue"/>-->
+
+    <!--</FrameLayout>-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="총 담첨금액 약"/>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="202억"/>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="1인당 약"/>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="13억원"/>-->
+
+    <!--</LinearLayout>-->
+
+    <!--</LinearLayout>-->
+
+</LinearLayout>

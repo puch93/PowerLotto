@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/ll_ballbox_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/guide_text3"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ball_box"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_alpha="1"
+            app:shimmer_base_color="@color/c_white"
+            app:shimmer_colored="false"
+            app:shimmer_duration="2000"
+            app:shimmer_highlight_alpha="0.1">
+
+            <TextView
+                android:id="@+id/tv_num1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/b_ball_grey"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="\?"
+                android:textColor="@color/c_white"
+                android:textSize="@dimen/middle_text"
+                android:textStyle="bold" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_alpha="1"
+            app:shimmer_base_color="@color/c_white"
+            app:shimmer_colored="false"
+            app:shimmer_duration="2000"
+            app:shimmer_highlight_alpha="0.1">
+
+            <TextView
+                android:id="@+id/tv_num2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/b_ball_grey"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="\?"
+                android:textColor="@color/c_white"
+                android:textSize="@dimen/middle_text"
+                android:textStyle="bold" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_alpha="1"
+            app:shimmer_base_color="@color/c_white"
+            app:shimmer_colored="false"
+            app:shimmer_duration="2000"
+            app:shimmer_highlight_alpha="0.1">
+
+            <TextView
+                android:id="@+id/tv_num3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/b_ball_grey"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="\?"
+                android:textColor="@color/c_white"
+                android:textSize="@dimen/middle_text"
+                android:textStyle="bold" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_alpha="1"
+            app:shimmer_base_color="@color/c_white"
+            app:shimmer_colored="false"
+            app:shimmer_duration="2000"
+            app:shimmer_highlight_alpha="0.1">
+
+            <TextView
+                android:id="@+id/tv_num4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/b_ball_grey"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="\?"
+                android:textColor="@color/c_white"
+                android:textSize="@dimen/middle_text"
+                android:textStyle="bold" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_alpha="1"
+            app:shimmer_base_color="@color/c_white"
+            app:shimmer_colored="false"
+            app:shimmer_duration="2000"
+            app:shimmer_highlight_alpha="0.1">
+
+            <TextView
+                android:id="@+id/tv_num5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/b_ball_grey"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="\?"
+                android:textColor="@color/c_white"
+                android:textSize="@dimen/middle_text"
+                android:textStyle="bold" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="match_parent" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_alpha="1"
+            app:shimmer_base_color="@color/c_white"
+            app:shimmer_colored="false"
+            app:shimmer_duration="2000"
+            app:shimmer_highlight_alpha="0.1">
+
+            <TextView
+                android:id="@+id/tv_num6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/b_ball_grey"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="\?"
+                android:textColor="@color/c_white"
+                android:textSize="@dimen/middle_text"
+                android:textStyle="bold" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <!--<View-->
+        <!--android:layout_width="8dp"-->
+        <!--android:layout_height="match_parent"/>-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:src="@drawable/b_plus" />-->
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="c_popback">#80000000</color>
+    <color name="c_mainback">#F2F2F5</color>
+    <color name="c_white">#ffffff</color>
+    <color name="c_drawertext">#666666</color>
+    <color name="c_1pxline">#DBDDDF</color>
+    <color name="c_yellow">#FAFF6C</color>
+    <color name="c_btnkakao">#493636</color>
+
+    <color name="c_mainblack">#393C46</color>
+    <color name="c_radiobtn">#FF496D</color>
+    <color name="c_pricetext">#FF496D</color>
+    <color name="c_grey1">#AEAFB2</color>
+    <color name="c_defaultblue">#3BB0FF</color>
+    <color name="c_qrblue">#3DC1E6</color>
+    <color name="c_spnblue">#8057BBDF</color>
+    <color name="c_code3">#333333</color>
+    <color name="c_code4">#444444</color>
+    <color name="c_code9">#999999</color>
+    <color name="c_ligthline2">#EEEEEE</color>
+    <color name="c_ligthline">#E5E5E5</color>
+    <color name="c_line">#BDC7D0</color>
+    <color name="c_393C46">#393C46</color>
+    <color name="c_43464F">#43464F</color>
+
+    <color name="color_f3f4f5">#f3f4f5</color>
+    <color name="color_e9e7eb">#e9e7eb</color>
+    <color name="color_132439">#132439</color>
+    <color name="color_c4c8cc">#c4c8cc</color>
+    <color name="color_80cdf0">#80cdf0</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_444444">#444444</color>
+    <color name="color_cc444444">#cc444444</color>
+
+
+    <color name="color_yellow">#f1ad0e</color>
+    <color name="color_green">#92c21f</color>
+    <color name="color_red">#ff496d</color>
+    <color name="color_blue">#389af1</color>
+    <color name="color_purple">#6954ef</color>
+
+</resources>

@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/c_white"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+                <FrameLayout
+                    android:id="@+id/ball1"
+                    android:layout_width="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_yellow"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="1"
+                        android:textColor="@color/color_yellow"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/ball2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num2"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_yellow"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="@color/color_yellow"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num3"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_yellow"
+                        android:gravity="center"
+                        android:text="3"
+                        android:textColor="@color/color_yellow"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num4"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_yellow"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textColor="@color/color_yellow"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num5"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_yellow"
+                        android:gravity="center"
+                        android:text="5"
+                        android:textColor="@color/color_yellow"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num6"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_yellow"
+                        android:gravity="center"
+                        android:text="6"
+                        android:textColor="@color/color_yellow"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num7"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_yellow"
+                        android:gravity="center"
+                        android:text="7"
+                        android:textColor="@color/color_yellow"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num8"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_yellow"
+                        android:gravity="center"
+                        android:text="8"
+                        android:textColor="@color/color_yellow"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num9"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_yellow"
+                        android:gravity="center"
+                        android:text="9"
+                        android:textColor="@color/color_yellow"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num10"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_yellow"
+                        android:gravity="center"
+                        android:text="10"
+                        android:textColor="@color/color_yellow"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+            </TableRow>
+
+            <TableRow android:layout_marginTop="10dp">
+
+                <FrameLayout
+                    android:id="@+id/ball11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num11"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_green"
+                        android:gravity="center"
+                        android:text="11"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/smiddle_text" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num12"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_green"
+                        android:gravity="center"
+                        android:text="12"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num13"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_green"
+                        android:gravity="center"
+                        android:text="13"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num14"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_green"
+                        android:gravity="center"
+                        android:text="14"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num15"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_green"
+                        android:gravity="center"
+                        android:text="15"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num16"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_green"
+                        android:gravity="center"
+                        android:text="16"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num17"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_green"
+                        android:gravity="center"
+                        android:text="17"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num18"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_green"
+                        android:gravity="center"
+                        android:text="18"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num19"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_green"
+                        android:gravity="center"
+                        android:text="19"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num20"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_green"
+                        android:gravity="center"
+                        android:text="20"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+            </TableRow>
+
+            <TableRow android:layout_marginTop="10dp">
+
+                <FrameLayout
+                    android:id="@+id/ball21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num21"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_red"
+                        android:gravity="center"
+                        android:text="21"
+                        android:textColor="@color/color_red"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num22"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_red"
+                        android:gravity="center"
+                        android:text="22"
+                        android:textColor="@color/color_red"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num23"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_red"
+                        android:gravity="center"
+                        android:text="23"
+                        android:textColor="@color/color_red"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num24"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_red"
+                        android:gravity="center"
+                        android:text="24"
+                        android:textColor="@color/color_red"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num25"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_red"
+                        android:gravity="center"
+                        android:text="25"
+                        android:textColor="@color/color_red"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num26"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_red"
+                        android:gravity="center"
+                        android:text="26"
+                        android:textColor="@color/color_red"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num27"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_red"
+                        android:gravity="center"
+                        android:text="27"
+                        android:textColor="@color/color_red"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num28"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_red"
+                        android:gravity="center"
+                        android:text="28"
+                        android:textColor="@color/color_red"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num29"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_red"
+                        android:gravity="center"
+                        android:text="29"
+                        android:textColor="@color/color_red"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num30"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_red"
+                        android:gravity="center"
+                        android:text="30"
+                        android:textColor="@color/color_red"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+            </TableRow>
+
+            <TableRow android:layout_marginTop="10dp">
+
+                <FrameLayout
+                    android:id="@+id/ball31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num31"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_blue"
+                        android:gravity="center"
+                        android:text="31"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num32"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_blue"
+                        android:gravity="center"
+                        android:text="32"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num33"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_blue"
+                        android:gravity="center"
+                        android:text="33"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num34"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_blue"
+                        android:gravity="center"
+                        android:text="34"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num35"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_blue"
+                        android:gravity="center"
+                        android:text="35"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball36"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num36"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_blue"
+                        android:gravity="center"
+                        android:text="36"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball37"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num37"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_blue"
+                        android:gravity="center"
+                        android:text="37"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball38"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num38"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_blue"
+                        android:gravity="center"
+                        android:text="38"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball39"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num39"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_blue"
+                        android:gravity="center"
+                        android:text="39"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num40"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_blue"
+                        android:gravity="center"
+                        android:text="40"
+                        android:textColor="@color/color_blue"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+            </TableRow>
+
+            <TableRow android:layout_marginTop="10dp">
+
+                <FrameLayout
+                    android:id="@+id/ball41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num41"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_purple"
+                        android:gravity="center"
+                        android:text="41"
+                        android:textColor="@color/color_purple"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball42"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num42"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_purple"
+                        android:gravity="center"
+                        android:text="42"
+                        android:textColor="@color/color_purple"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball43"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num43"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_purple"
+                        android:gravity="center"
+                        android:text="43"
+                        android:textColor="@color/color_purple"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball44"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num44"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_purple"
+                        android:gravity="center"
+                        android:text="44"
+                        android:textColor="@color/color_purple"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ball45"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/num45"
+                        android:includeFontPadding="false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/numb_bg_purple"
+                        android:gravity="center"
+                        android:text="45"
+                        android:textColor="@color/color_purple"
+                        android:textSize="@dimen/smiddle_text" />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="5" />
+
+            </TableRow>
+
+
+        </TableLayout>
+
+
+    </LinearLayout>
+
+</layout>

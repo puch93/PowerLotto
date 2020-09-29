@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/pop_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/push_head">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_text"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:text="이번주 로또 당첨 금액"
+                android:textColor="@color/c_white" />
+
+            <ImageView
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:padding="4dp"
+                android:layout_gravity="right|center_vertical"
+                android:src="@drawable/s_close" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:background="@drawable/push_bg"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/alarm_type1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                layout="@layout/alarm_type1cont"
+                />
+
+            <include
+                android:id="@+id/alarm_type2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                layout="@layout/alarm_type2cont"
+                />
+
+            <include
+                android:id="@+id/alarm_type3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                layout="@layout/alarm_type3cont"
+                />
+
+            <io.supercharge.shimmerlayout.ShimmerLayout
+                android:id="@+id/shimmer_anim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:shimmer_animation_duration="1200"
+                app:shimmer_color="@color/c_white">
+
+            <TextView
+                android:id="@+id/btn_alarmbottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textSize="@dimen/large_text"
+                android:background="@drawable/sel_btnpurple"
+                android:gravity="center"
+                android:text="도전하기"
+                android:textColor="@color/c_white" />
+
+            </io.supercharge.shimmerlayout.ShimmerLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_particle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/pop_layout"
+            app:layout_constraintRight_toRightOf="@+id/pop_layout"
+            app:layout_constraintTop_toTopOf="@+id/pop_layout"
+            app:layout_constraintBottom_toTopOf="@+id/pop_layout"
+            android:src="@drawable/particle_img"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

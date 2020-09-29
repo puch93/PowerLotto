@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="status_matarial" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimaryDark">#389AF1</item>
+    </style>
+
+</resources>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1052628090345",
+    "firebase_url": "https://powerlotto-e9d79.firebaseio.com",
+    "project_id": "powerlotto-e9d79",
+    "storage_bucket": "powerlotto-e9d79.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052628090345:android:57003aaed2552f05a41f78",
+        "android_client_info": {
+          "package_name": "kr.core.powerlotto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052628090345-omof39944n6so631870oujrq7bgk4nqt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRvdO371EISRWc-M11aRYHwLP_bfRFQlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052628090345-omof39944n6so631870oujrq7bgk4nqt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

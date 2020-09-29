@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.08"
+            android:textColor="@color/c_code9"
+            android:textSize="@dimen/lmiddle_text"
+            android:text="이번주 로또"/>
+
+        <TextView
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.08"
+            android:textColor="@color/c_393C46"
+            android:textStyle="bold"
+            android:textSize="23dp"
+            android:text="구매 마감 시간까지"/>
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/clock_icon"/>
+
+
+
+        <TextView
+            android:id="@+id/tv_countdown"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            android:textColor="@color/c_defaultblue"
+            tool:text="1일 12시 16분 54초"/>
+
+        <!--<LinearLayout-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginRight="8dp"-->
+                <!--android:src="@drawable/clock_icon"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_countdown"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="23dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="@color/c_defaultblue"-->
+                <!--android:text="1일 12시 16분 54초"/>-->
+
+        <!--</LinearLayout>-->
+
+    </LinearLayout>
+
+
+</layout>

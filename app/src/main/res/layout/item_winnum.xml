@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/list_box01"
+        android:orientation="vertical">
+
+        <!-- top -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingTop="16dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/tv_lln_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_code3"
+                android:textSize="@dimen/lmiddle_text"
+                android:textStyle="bold"
+                tool:text="870" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="회"
+                android:textColor="@color/c_code3"
+                android:textSize="@dimen/lmiddle_text" />
+
+            <TextView
+                android:id="@+id/tv_lln_chu_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_code9"
+                android:textSize="@dimen/middle_text"
+                tool:text="2019.8.21" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"
+                    android:src="@drawable/icon_coin" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="1등"
+                    android:textColor="@color/c_drawertext"
+                    android:textSize="@dimen/middle_text"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/lln_lucky_cnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c_drawertext"
+                    android:textSize="@dimen/middle_text"
+                    android:textStyle="bold"
+                    tool:text="16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="명"
+                    android:textColor="@color/c_drawertext"
+                    android:textSize="@dimen/middle_text"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/c_ligthline2" />
+
+        <!-- bottom-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="8dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_base_alpha="1"
+                    app:shimmer_base_color="@color/c_white"
+                    app:shimmer_colored="false"
+                    app:shimmer_duration="2000"
+                    app:shimmer_highlight_alpha="0.1">
+
+                    <TextView
+                        android:id="@+id/tv_winnum1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/c_white"
+                        android:textSize="@dimen/middle_text"
+                        android:textStyle="bold" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <!-- weight = 1 또는 간격 5dp -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_base_alpha="1"
+                    app:shimmer_base_color="@color/c_white"
+                    app:shimmer_colored="false"
+                    app:shimmer_duration="2000"
+                    app:shimmer_highlight_alpha="0.1">
+
+                    <TextView
+                        android:id="@+id/tv_winnum2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/c_white"
+                        android:textSize="@dimen/middle_text"
+                        android:textStyle="bold" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_base_alpha="1"
+                    app:shimmer_base_color="@color/c_white"
+                    app:shimmer_colored="false"
+                    app:shimmer_duration="2000"
+                    app:shimmer_highlight_alpha="0.1">
+
+                    <TextView
+                        android:id="@+id/tv_winnum3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/c_white"
+                        android:textSize="@dimen/middle_text"
+                        android:textStyle="bold" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_base_alpha="1"
+                    app:shimmer_base_color="@color/c_white"
+                    app:shimmer_colored="false"
+                    app:shimmer_duration="2000"
+                    app:shimmer_highlight_alpha="0.1">
+
+                    <TextView
+                        android:id="@+id/tv_winnum4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/c_white"
+                        android:textSize="@dimen/middle_text"
+                        android:textStyle="bold" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_base_alpha="1"
+                    app:shimmer_base_color="@color/c_white"
+                    app:shimmer_colored="false"
+                    app:shimmer_duration="2000"
+                    app:shimmer_highlight_alpha="0.1">
+
+                    <TextView
+                        android:id="@+id/tv_winnum5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/c_white"
+                        android:textSize="@dimen/middle_text"
+                        android:textStyle="bold" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_base_alpha="1"
+                    app:shimmer_base_color="@color/c_white"
+                    app:shimmer_colored="false"
+                    app:shimmer_duration="2000"
+                    app:shimmer_highlight_alpha="0.1">
+
+                    <TextView
+                        android:id="@+id/tv_winnum6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/c_white"
+                        android:textSize="@dimen/middle_text"
+                        android:textStyle="bold" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/b_plus" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_base_alpha="1"
+                    app:shimmer_base_color="@color/c_white"
+                    app:shimmer_colored="false"
+                    app:shimmer_duration="2000"
+                    app:shimmer_highlight_alpha="0.1">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/s_ball_bonus"
+                        android:padding="4dp">
+
+                        <TextView
+                            android:id="@+id/tv_bonusnum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/c_white"
+                            android:textSize="@dimen/middle_text"
+                            android:textStyle="bold" />
+
+                    </FrameLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:text="1인당 당첨금액"
+                    android:textColor="@color/c_393C46"
+                    android:textSize="@dimen/lmiddle_text" />
+
+                <TextView
+                    android:id="@+id/tv_lln_lucky_price_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c_pricetext"
+                    android:textSize="@dimen/lmiddle_text"
+                    android:textStyle="bold"
+                    tool:text="1,928,842,988" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
