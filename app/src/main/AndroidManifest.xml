@@ -40,16 +40,10 @@
 
         <activity
             android:name=".util.LayoutWebView"
-            android:icon="@drawable/coupang"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="stateAlwaysHidden"
             android:launchMode="singleTask"
-            android:label="쿠팡">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
+            android:label="쿠팡"/>
 
         <receiver
             android:name=".util.CoupangReceiver"
