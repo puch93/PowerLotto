@@ -243,7 +243,7 @@ public class BillingManager implements PurchasesUpdatedListener {
 
         //그 외에 다른 결제 실패 이유
         else {
-            Toast.makeText(act, "결제가 취소 되었습니다. 종료코드: " + billingResult.getResponseCode(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(act, "결제가 취소 되었습니다. 종료코드: " + billingResult.getResponseCode(), Toast.LENGTH_SHORT).show();
             Log.e(StringUtil.TAG, "결제가 취소 되었습니다. 종료코드: " + billingResult.getResponseCode());
         }
     }

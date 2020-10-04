@@ -19,6 +19,7 @@ import android.provider.Telephony;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -342,26 +343,43 @@ public class SplashAct extends BaseAct {
                         JSONObject jo = new JSONObject(resultData.getResult());
 
                         if (jo.getString("result").equalsIgnoreCase("Y")) {
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(SplashAct.this);
-                            dialog.setTitle("업데이트 알림");
-                            dialog.setMessage("플레이 스토어에 업데이트 버전이 있습니다. 업데이트 하시겠습니까?");
-                            dialog.setPositiveButton("업데이트", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(NetUrls.MARKETADDR)));
-                                    dialogInterface.dismiss();
-                                }
-                            });
+                            android.app.AlertDialog.Builder alertDialogBuilder =
+                                    new android.app.AlertDialog.Builder(new ContextThemeWrapper(act, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert));
+                            alertDialogBuilder.setTitle("업데이트");
+                            alertDialogBuilder.setMessage("새로운 버전이 있습니다.")
+                                    .setPositiveButton("업데이트 바로가기", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                                            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=kr.core.powerlotto"));
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    });
+                            android.app.AlertDialog alertDialog = alertDialogBuilder.create();
+                            alertDialog.setCanceledOnTouchOutside(false);
+                            alertDialog.show();
 
-                            dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                    billingCheck();
-                                }
-                            });
 
-                            dialog.show();
+//                            AlertDialog.Builder dialog = new AlertDialog.Builder(SplashAct.this);
+//                            dialog.setTitle("업데이트 알림");
+//                            dialog.setMessage("플레이 스토어에 업데이트 버전이 있습니다. 업데이트 하시겠습니까?");
+//                            dialog.setPositiveButton("업데이트", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(NetUrls.MARKETADDR)));
+//                                    dialogInterface.dismiss();
+//                                }
+//                            });
+//
+//                            dialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    dialogInterface.dismiss();
+//                                    billingCheck();
+//                                }
+//                            });
+//                            dialog.show();
                         } else {
                             billingCheck();
                         }
