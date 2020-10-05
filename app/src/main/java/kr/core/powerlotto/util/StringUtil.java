@@ -1,5 +1,6 @@
 package kr.core.powerlotto.util;
 
+import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +9,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -25,6 +28,46 @@ public class StringUtil {
     public static final String BANNER = "B";
     public static final String ADMOB = "A";
     public static final String NONE = "N";
+
+    public static String getDeviceId(Context context) {
+        String newId = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            newId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        } else {
+            newId = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+
+            if (StringUtil.isNull(newId)) {
+                newId = "35" +
+                        Build.BOARD.length() % 10 + Build.BRAND.length() % 10 +
+                        Build.CPU_ABI.length() % 10 + Build.DEVICE.length() % 10 +
+                        Build.DISPLAY.length() % 10 + Build.HOST.length() % 10 +
+                        Build.ID.length() % 10 + Build.MANUFACTURER.length() % 10 +
+                        Build.MODEL.length() % 10 + Build.PRODUCT.length() % 10 +
+                        Build.TAGS.length() % 10 + Build.TYPE.length() % 10 +
+                        Build.USER.length() % 10;
+            }
+        }
+        return newId;
+    }
+    // get phone num
+    public static String getPhoneNumber(Activity act) {
+        TelephonyManager tm = (TelephonyManager) act.getSystemService(Context.TELEPHONY_SERVICE);
+        String phoneNum = tm.getLine1Number();
+        if (StringUtil.isNull(phoneNum)) {
+            return null;
+        } else {
+            if (phoneNum.startsWith("+82")) {
+                phoneNum = phoneNum.replace("+82", "0");
+            }
+            return phoneNum;
+        }
+    }
+
+
+    public static String getTelecom(Context ctx) {
+        TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
+        return tm.getNetworkOperatorName();
+    }
 
     public static boolean isNull(String str) {
         if (str == null || str.length() == 0 || str.equals("null")) {

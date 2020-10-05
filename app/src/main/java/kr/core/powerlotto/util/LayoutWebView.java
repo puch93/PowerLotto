@@ -332,6 +332,12 @@ public class LayoutWebView extends AppCompatActivity implements View.OnClickList
         checkVer.addParams("site", "1");
         checkVer.addParams("m_idx", Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
         checkVer.addParams("fcm", UserPref.getFcmToken(act));
+
+        checkVer.addParams("idx", UserPref.getIdx(act));
+        checkVer.addParams("m_uniq", StringUtil.getDeviceId(act));
+        checkVer.addParams("m_hp", StringUtil.getPhoneNumber(act));
+        checkVer.addParams("m_model", Build.MODEL);
+        checkVer.addParams("m_agent", StringUtil.getTelecom(act));
         checkVer.execute(true, true);
     }
 }

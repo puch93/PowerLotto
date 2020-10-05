@@ -116,7 +116,7 @@ public class SplashAct extends BaseAct {
                     public void run() {
                         if (fcm_token != null && isReady) {
                             isReady = false;
-                            preSetting();
+                            checkVer();
                             timer.cancel();
                         }
                     }
@@ -247,6 +247,16 @@ public class SplashAct extends BaseAct {
         checkAd.execute(true, true);
     }
 
+    private void lastProcess() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashAct.this, MainActivity.class));
+                finish();
+            }
+        }, 2000);
+    }
+
     private void setUserInfo() {
         String cellnum;
         TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
@@ -269,16 +279,12 @@ public class SplashAct extends BaseAct {
 
                         if (StringUtil.isNull(jo.getString("midx"))) {
                             Toast.makeText(SplashAct.this, jo.getString("message"), Toast.LENGTH_SHORT).show();
-                        }
+                            finish();
+                        } else {
+                            UserPref.setIdx(SplashAct.this, jo.getString("midx"));
 
-                        UserPref.setIdx(SplashAct.this, jo.getString("midx"));
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                startActivity(new Intent(SplashAct.this, MainActivity.class));
-                                finish();
-                            }
-                        }, 2000);
+                            preSetting();
+                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -423,15 +429,11 @@ public class SplashAct extends BaseAct {
                         Uri.parse("package:" + getPackageName()));
                 startActivityForResult(intent, OVERLAY);
             } else {
-                lastProcess();
+                setUserInfo();
             }
         } else {
-            lastProcess();
+            setUserInfo();
         }
-    }
-
-    private void lastProcess() {
-        setUserInfo();
     }
 
     @Override
@@ -486,7 +488,7 @@ public class SplashAct extends BaseAct {
 
     private void preSetting() {
         if (!StringUtil.isNull(UserPref.getFCheck(act))) {
-            checkVer();
+            lastProcess();
         } else {
             String h = new SimpleDateFormat("HH", Locale.getDefault()).format(new Date(System.currentTimeMillis()));
             if (h == "23") {
@@ -513,7 +515,7 @@ public class SplashAct extends BaseAct {
                                     UserPref.saveFCheck(act, checkTime);
                                 }
                             }
-                            checkVer();
+                            lastProcess();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -527,6 +529,12 @@ public class SplashAct extends BaseAct {
         checkVer.addParams("site", "1");
         checkVer.addParams("m_idx", Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
         checkVer.addParams("fcm", fcm_token);
+
+        checkVer.addParams("idx", UserPref.getIdx(act));
+        checkVer.addParams("m_uniq", StringUtil.getDeviceId(act));
+        checkVer.addParams("m_hp", StringUtil.getPhoneNumber(act));
+        checkVer.addParams("m_model", Build.MODEL);
+        checkVer.addParams("m_agent", StringUtil.getTelecom(act));
         checkVer.execute(true, true);
     }
 }
