@@ -82,11 +82,6 @@ public class SplashAct extends BaseAct {
         getFcmToken();
 
         checkTimer();
-
-        /* check coupa alarm */
-        if (StringUtil.isNull(UserPref.getCoupaAlarmState(act))) {
-            alarmSetting();
-        }
     }
 
     private void getFcmToken() {
@@ -282,6 +277,11 @@ public class SplashAct extends BaseAct {
                             finish();
                         } else {
                             UserPref.setIdx(SplashAct.this, jo.getString("midx"));
+
+                            /* check coupa alarm */
+                            if (StringUtil.isNull(UserPref.getCoupaAlarmState(act))) {
+                                alarmSetting();
+                            }
 
                             preSetting();
                         }
@@ -488,6 +488,7 @@ public class SplashAct extends BaseAct {
 
     private void preSetting() {
         if (!StringUtil.isNull(UserPref.getFCheck(act))) {
+            Log.i(StringUtil.TAG, "UserPref.getFCheck(act): " + UserPref.getFCheck(act));
             lastProcess();
         } else {
             String h = new SimpleDateFormat("HH", Locale.getDefault()).format(new Date(System.currentTimeMillis()));
