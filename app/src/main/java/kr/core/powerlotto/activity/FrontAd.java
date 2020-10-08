@@ -64,7 +64,7 @@ public class FrontAd extends BaseAct {
         LinearLayout close = (LinearLayout)findViewById(R.id.ll_adview_close);
 
         Glide.with(this)
-                .load(NetUrls.IMGDOMAIN+imgurl)
+                .load(imgurl)
                 .into(binding.ivAdimg);
 
         binding.ivAdimg.setOnClickListener(new View.OnClickListener() {

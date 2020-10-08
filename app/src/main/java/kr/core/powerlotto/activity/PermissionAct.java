@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -53,6 +54,14 @@ public class PermissionAct extends BaseAct implements View.OnClickListener {
 
         subState = getIntent().getStringExtra("subState");
         Log.d(StringUtil.TAG, "subState: "+subState);
+
+        binding.btnPrivate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://lotto.alrigo.co.kr/term.txt"));
+                startActivity(intent);
+            }
+        });
 
     }
 

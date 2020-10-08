@@ -77,7 +77,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("type", _P_FRONT);
                 intent.putExtra("targeturl", url);     // 광고 연결주소
-                intent.putExtra("imgurl", banner_file);        // 광고 이미지
+                intent.putExtra("imgurl", NetUrls.IMGDOMAIN + banner_file);        // 광고 이미지
 
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
@@ -93,6 +93,25 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("type", "push");
                 startActivity(intent);
+            } else if (type.equalsIgnoreCase("coupang_noti")) {
+                sendDefaultNotification("파워로또", msg, url, null);
+            } else if (type.equalsIgnoreCase("coupang_front")) {
+                String filename = StringUtil.getStr(jo, "filename");
+
+                Intent intent = new Intent(this, FrontAd.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("type", _P_FRONT);
+                intent.putExtra("targeturl", url);     // 광고 연결주소
+                intent.putExtra("imgurl", filename);        // 광고 이미지
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+
+                try {
+                    pendingIntent.send();
+                } catch (PendingIntent.CanceledException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -103,7 +122,7 @@ public class MyFirebaseMessagingService extends com.google.firebase.messaging.Fi
 
         //채널설정
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("default", "바우와우", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel channel = new NotificationChannel("default", "파워로또", NotificationManager.IMPORTANCE_DEFAULT);
             channel.setDescription("바우와우 알림설정");
 
             notificationManager.createNotificationChannel(channel);

@@ -44,6 +44,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import kr.core.powerlotto.R;
+import kr.core.powerlotto.activity.BaseAct;
 import kr.core.powerlotto.activity.SplashAct;
 import kr.core.powerlotto.databinding.LayoutWebviewBinding;
 import kr.core.powerlotto.insidedata.UserPref;
@@ -51,7 +52,7 @@ import kr.core.powerlotto.network.ReqBasic;
 import kr.core.powerlotto.network.netUtil.HttpResult;
 import kr.core.powerlotto.network.netUtil.NetUrls;
 
-public class LayoutWebView extends AppCompatActivity implements View.OnClickListener {
+public class LayoutWebView extends BaseAct implements View.OnClickListener {
     LayoutWebviewBinding binding;
     Activity act;
     CookieManager cookieManager;
