@@ -308,7 +308,7 @@ public class SplashAct extends BaseAct {
 
 //        userInfo.addParams("hp","01000000000");
         userInfo.addParams("m_device_model", Build.MODEL);
-        userInfo.addParams("uniq", Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
+        userInfo.addParams("uniq", StringUtil.getDeviceId(act));
         userInfo.execute(true, true);
     }
 
@@ -528,7 +528,7 @@ public class SplashAct extends BaseAct {
         checkVer.addParams("dbControl", "setCoupangPartnersPush");
         checkVer.addParams("grouptime", checkTime);
         checkVer.addParams("site", "1");
-        checkVer.addParams("m_idx", Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
+        checkVer.addParams("m_idx", StringUtil.getDeviceId(act));
         checkVer.addParams("fcm", fcm_token);
 
         checkVer.addParams("idx", UserPref.getIdx(act));

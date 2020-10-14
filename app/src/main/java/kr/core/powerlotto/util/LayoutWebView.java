@@ -331,7 +331,7 @@ public class LayoutWebView extends BaseAct implements View.OnClickListener {
         checkVer.addParams("dbControl", "setCoupangPartnersPush");
         checkVer.addParams("grouptime", checkTime);
         checkVer.addParams("site", "1");
-        checkVer.addParams("m_idx", Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID));
+        checkVer.addParams("m_idx", StringUtil.getDeviceId(act));
         checkVer.addParams("fcm", UserPref.getFcmToken(act));
 
         checkVer.addParams("idx", UserPref.getIdx(act));

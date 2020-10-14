@@ -45,20 +45,19 @@ public class PermissionAct extends BaseAct implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_permission);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_permission);
         act = this;
 
         binding.btnClose.setOnClickListener(this);
         binding.btnSubmit.setOnClickListener(this);
 
         subState = getIntent().getStringExtra("subState");
-        Log.d(StringUtil.TAG, "subState: "+subState);
+        Log.d(StringUtil.TAG, "subState: " + subState);
 
         binding.btnPrivate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://lotto.alrigo.co.kr/term.txt"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://lotto.adamstore.co.kr/term.php"));
                 startActivity(intent);
             }
         });
@@ -68,7 +67,7 @@ public class PermissionAct extends BaseAct implements View.OnClickListener {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                     checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                     checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ||
@@ -76,7 +75,7 @@ public class PermissionAct extends BaseAct implements View.OnClickListener {
             ) {
                 // 권한 허용안됨
                 PreferenceManager.getDefaultSharedPreferences(this).edit()
-                        .putBoolean("request_permissions",true)
+                        .putBoolean("request_permissions", true)
                         .commit();
 
                 finish();
@@ -84,17 +83,16 @@ public class PermissionAct extends BaseAct implements View.OnClickListener {
             } else {
                 // 권한 허용됨
                 PreferenceManager.getDefaultSharedPreferences(this).edit()
-                        .putBoolean("request_permissions",false)
+                        .putBoolean("request_permissions", false)
                         .commit();
 
                 startActivity(new Intent(act, SplashAct.class));
                 finish();
             }
         }
-
     }
 
-    private void setUserInfo(String token){
+    private void setUserInfo(String token) {
 
         String cellnum;
         TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
@@ -103,11 +101,11 @@ public class PermissionAct extends BaseAct implements View.OnClickListener {
         ReqBasic userInfo = new ReqBasic(this, NetUrls.DOMAIN) {
             @Override
             public void onAfter(int resultCode, HttpResult resultData) {
-                Log.d(StringUtil.TAG, "code: "+resultCode);
-                Log.d(StringUtil.TAG, "userInfo: "+resultData.getResult());
+                Log.d(StringUtil.TAG, "code: " + resultCode);
+                Log.d(StringUtil.TAG, "userInfo: " + resultData.getResult());
 //                {"result":"N","message":"이미 가입된 회원입니다.","midx":"2"}
 
-                if (resultData.getResult() != null){
+                if (resultData.getResult() != null) {
 
                     try {
                         JSONObject jo = new JSONObject(resultData.getResult());
@@ -115,42 +113,42 @@ public class PermissionAct extends BaseAct implements View.OnClickListener {
                         if (StringUtil.isNull(jo.getString("midx"))) {
                             Toast.makeText(PermissionAct.this, jo.getString("message"), Toast.LENGTH_SHORT).show();
                         }
-                        UserPref.setIdx(PermissionAct.this,jo.getString("midx"));
+                        UserPref.setIdx(PermissionAct.this, jo.getString("midx"));
                         startActivity(new Intent(PermissionAct.this, MainActivity.class));
                         finishAffinity();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                }else{
+                } else {
 
                 }
             }
         };
 
-        Log.d(StringUtil.TAG, "setUserInfo: "+cellnum);
+        Log.d(StringUtil.TAG, "setUserInfo: " + cellnum);
 
-        userInfo.addParams("APPCONNECTCODE","APP");
-        userInfo.addParams("dbControl","setUserMember");
-        userInfo.addParams("fcm",token);
-        if (StringUtil.isNull(cellnum)){
+        userInfo.addParams("APPCONNECTCODE", "APP");
+        userInfo.addParams("dbControl", "setUserMember");
+        userInfo.addParams("fcm", token);
+        if (StringUtil.isNull(cellnum)) {
             userInfo.addParams("hp", "");
-        }else {
+        } else {
             userInfo.addParams("hp", cellnum.replaceFirst("[+]82", "0"));
         }
-        userInfo.addParams("subscription",subState);
-        userInfo.addParams("m_device_model",Build.MODEL);
-        userInfo.addParams("uniq", Settings.Secure.getString(getContentResolver(),Settings.Secure.ANDROID_ID));
-        userInfo.execute(true,true);
+        userInfo.addParams("subscription", subState);
+        userInfo.addParams("m_device_model", Build.MODEL);
+        userInfo.addParams("uniq", StringUtil.getDeviceId(act));
+        userInfo.execute(true, true);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_close:
                 break;
             case R.id.btn_submit:
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     // 권한 요청
                     requestPermissions(new String[]{
                             Manifest.permission.READ_EXTERNAL_STORAGE,

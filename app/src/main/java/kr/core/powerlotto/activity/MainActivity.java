@@ -474,8 +474,10 @@ public class MainActivity extends BaseAct implements View.OnClickListener {
                 UserPref.setAlarmState(this, binding.layoutNavi.swAlarm.isSelected());
                 break;
             case R.id.btn_privacy:
-                startActivity(new Intent(this, PrivacyAct.class));
-                binding.mainDrawer.closeDrawer(GravityCompat.START);
+//                startActivity(new Intent(this, PrivacyAct.class));
+//                binding.mainDrawer.closeDrawer(GravityCompat.START);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://lotto.adamstore.co.kr/term.php"));
+                startActivity(intent);
                 break;
         }
     }

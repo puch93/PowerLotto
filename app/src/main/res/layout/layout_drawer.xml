@@ -427,7 +427,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="개인정보 처리 방침"
+                    android:text="개인정보 처리방침"
                     android:textSize="@dimen/smiddle_text"
                     android:textColor="@color/c_drawertext" />
 
