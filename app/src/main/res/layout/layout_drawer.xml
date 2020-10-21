@@ -445,6 +445,41 @@
                 android:layout_marginRight="20dp"
                 android:background="@color/c_1pxline"/>
 
+            <LinearLayout
+                android:id="@+id/btn_subs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingTop="15dp"
+                android:paddingBottom="11dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:id="@+id/tv_subs"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="월정액 해지"
+                    android:textSize="@dimen/smiddle_text"
+                    android:textColor="@color/c_drawertext" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/s_arrow" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/c_1pxline"/>
+
 
         </LinearLayout>
 

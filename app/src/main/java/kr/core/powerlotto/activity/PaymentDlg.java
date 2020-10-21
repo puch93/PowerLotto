@@ -56,6 +56,7 @@ public class PaymentDlg extends BaseAct {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(act, PremiumAct.class));
+                finish();
             }
         });
     }

@@ -333,6 +333,11 @@ public class LayoutWebView extends BaseAct implements View.OnClickListener {
         checkVer.addParams("site", "1");
         checkVer.addParams("m_idx", StringUtil.getDeviceId(act));
         checkVer.addParams("fcm", UserPref.getFcmToken(act));
+        if (StringUtil.isGoogle) {
+            checkVer.addParams("m_store", "Google");
+        } else {
+            checkVer.addParams("m_store", "One");
+        }
 
         checkVer.addParams("idx", UserPref.getIdx(act));
         checkVer.addParams("m_uniq", StringUtil.getDeviceId(act));

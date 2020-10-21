@@ -29,6 +29,16 @@ public class StringUtil {
     public static final String ADMOB = "A";
     public static final String NONE = "N";
 
+    public static final String KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCZ7FCZUCKDFk5N+LttCUrqvzZ57bX3zRjCQA0XQz3Diue6/lQKGaesc45g51U74X8NKtdUlbrLMh0bw9QAM4xYKh5VAKovC2f7SxgCjrrOpVbJl9aSXqasSvoU1xFllI8lI83IiUYej7LCZmLYaUhQAsb7ArLlmbu0vjfOCcoMRwIDAQAB";
+    public static final String DEVELOPERPAYLOAD = "powerlotto";
+    public static final int IAP_API_VERSION = 5;
+
+    public static final String URL_ONE_STORE_WEB = "https://m.onestore.co.kr/mobilepoc/apps/appsDetail.omp?prodId=0000751716";
+    public static final String URL_ONE_STORE_APP = "onestore://common/product/0000751716";
+    public static final String URL_PLAY_STORE = "https://play.google.com/store/apps/details?id=kr.core.powerlotto";
+
+    public static final boolean isGoogle = false;
+
     public static String getDeviceId(Context context) {
         String newId = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

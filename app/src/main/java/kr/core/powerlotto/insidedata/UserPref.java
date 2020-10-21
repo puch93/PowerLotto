@@ -29,8 +29,30 @@ public class UserPref {
         editor.commit();
     }
 
+    public static void saveSubscriptionState(Context ctx, boolean value) {
+        SharedPreferences pref = ctx.getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("subs", value);
+        editor.commit();
+    }
+
+    public static boolean getSubscriptionState(Context ctx) {
+        SharedPreferences pref = ctx.getSharedPreferences("user", Context.MODE_PRIVATE);
+        return pref.getBoolean("subs", false);
+    }
 
 
+    public static String getSubscriptionId(Context context){
+        SharedPreferences pref = context.getSharedPreferences("user",context.MODE_PRIVATE);
+        return pref.getString("subs_id","");
+    }
+
+    public static void saveSubscriptionId(Context context,String idx){
+        SharedPreferences pref = context.getSharedPreferences("user",context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("subs_id",idx);
+        editor.commit();
+    }
 
 
 

@@ -154,6 +154,13 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="bab6db8c11ba01ad5fc450539359e9806b4f701c" />
+
+        <meta-data
+            android:name="iap:api_version"
+            android:value="5" />
+        <meta-data
+            android:name="iap:view_option"
+            android:value="popup | full" />
     </application>
 
 </manifest>

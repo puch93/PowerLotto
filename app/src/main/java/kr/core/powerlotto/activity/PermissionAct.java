@@ -92,56 +92,6 @@ public class PermissionAct extends BaseAct implements View.OnClickListener {
         }
     }
 
-    private void setUserInfo(String token) {
-
-        String cellnum;
-        TelephonyManager tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        cellnum = tm.getLine1Number();
-
-        ReqBasic userInfo = new ReqBasic(this, NetUrls.DOMAIN) {
-            @Override
-            public void onAfter(int resultCode, HttpResult resultData) {
-                Log.d(StringUtil.TAG, "code: " + resultCode);
-                Log.d(StringUtil.TAG, "userInfo: " + resultData.getResult());
-//                {"result":"N","message":"이미 가입된 회원입니다.","midx":"2"}
-
-                if (resultData.getResult() != null) {
-
-                    try {
-                        JSONObject jo = new JSONObject(resultData.getResult());
-
-                        if (StringUtil.isNull(jo.getString("midx"))) {
-                            Toast.makeText(PermissionAct.this, jo.getString("message"), Toast.LENGTH_SHORT).show();
-                        }
-                        UserPref.setIdx(PermissionAct.this, jo.getString("midx"));
-                        startActivity(new Intent(PermissionAct.this, MainActivity.class));
-                        finishAffinity();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                } else {
-
-                }
-            }
-        };
-
-        Log.d(StringUtil.TAG, "setUserInfo: " + cellnum);
-
-        userInfo.addParams("APPCONNECTCODE", "APP");
-        userInfo.addParams("dbControl", "setUserMember");
-        userInfo.addParams("fcm", token);
-        if (StringUtil.isNull(cellnum)) {
-            userInfo.addParams("hp", "");
-        } else {
-            userInfo.addParams("hp", cellnum.replaceFirst("[+]82", "0"));
-        }
-        userInfo.addParams("subscription", subState);
-        userInfo.addParams("m_device_model", Build.MODEL);
-        userInfo.addParams("uniq", StringUtil.getDeviceId(act));
-        userInfo.execute(true, true);
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

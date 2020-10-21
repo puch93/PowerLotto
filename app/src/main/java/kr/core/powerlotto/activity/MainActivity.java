@@ -33,6 +33,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.common.internal.service.Common;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -40,6 +41,9 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.onestore.iap.api.IapResult;
+import com.onestore.iap.api.PurchaseClient;
+import com.onestore.iap.api.PurchaseData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,12 +63,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import kr.core.powerlotto.R;
 import kr.core.powerlotto.adapter.MainviewPagerAdapter;
 import kr.core.powerlotto.data.MainWinInfo;
+import kr.core.powerlotto.databinding.ActivityMainBinding;
 import kr.core.powerlotto.databinding.ActivityMainBinding;
 import kr.core.powerlotto.insidedata.UserPref;
 import kr.core.powerlotto.network.ReqBasic;
@@ -88,6 +94,14 @@ public class MainActivity extends BaseAct implements View.OnClickListener {
     private final long FINISH_INTERVAL_TIME = 2000;
     private long backPressedTime = 0;
 
+    /* billing */
+    private static final int PURCHASE_REQUEST = 9500;
+    String productType = "auto";
+
+    PurchaseClient mPurchaseClient;
+    boolean isListenerCalled = false;
+    PurchaseData purchaseId = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,61 +114,6 @@ public class MainActivity extends BaseAct implements View.OnClickListener {
         setTextTypeface();
 
         getCoupaBanner();
-
-//        if (StringUtil.isNull(app.bannerState)) {
-//            binding.bannerArea.getRoot().setVisibility(View.VISIBLE);
-//            binding.bannerArea.bannerAdmob.setVisibility(View.VISIBLE);
-//            // admob 설정
-//            MobileAds.initialize(this, new OnInitializationCompleteListener() {
-//                @Override
-//                public void onInitializationComplete(InitializationStatus initializationStatus) {
-//
-//                }
-//            });
-//            AdRequest adRequest = new AdRequest.Builder().build();
-//            binding.bannerArea.bannerAdmob.loadAd(adRequest);
-////            binding.bannerArea.getRoot().setVisibility(View.GONE);
-//        } else {
-//            switch (app.bannerState) {
-//                case StringUtil.BANNER:
-//                    binding.bannerArea.getRoot().setVisibility(View.VISIBLE);
-//                    binding.bannerArea.bannerAdmob.setVisibility(View.GONE);
-//                    binding.bannerArea.bannerCore.setVisibility(View.VISIBLE);
-//
-//                    // 이미지 세팅
-//                    Glide.with(this)
-//                            .load(app.bannerImg)
-//                            .into(binding.bannerArea.bannerCore);
-//                    binding.bannerArea.bannerCore.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            if (StringUtil.isNull(app.bannerLink)) {
-//                                Toast.makeText(MainActivity.this, "연결할 수 없습니다.", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(app.bannerLink)));
-//                            }
-//                        }
-//                    });
-//
-//                    break;
-//                case StringUtil.ADMOB:
-//                    binding.bannerArea.getRoot().setVisibility(View.VISIBLE);
-//                    binding.bannerArea.bannerAdmob.setVisibility(View.VISIBLE);
-//                    // admob 설정
-//                    MobileAds.initialize(this, new OnInitializationCompleteListener() {
-//                        @Override
-//                        public void onInitializationComplete(InitializationStatus initializationStatus) {
-//
-//                        }
-//                    });
-//                    AdRequest adRequest = new AdRequest.Builder().build();
-//                    binding.bannerArea.bannerAdmob.loadAd(adRequest);
-//                    break;
-//                case StringUtil.NONE:
-//                    binding.bannerArea.getRoot().setVisibility(View.GONE);
-//                    break;
-//            }
-//        }
 
         binding.btnDrawermenu.setOnClickListener(this);
         binding.btnTopqrscan.setOnClickListener(this);
@@ -181,6 +140,7 @@ public class MainActivity extends BaseAct implements View.OnClickListener {
         binding.layoutNavi.swAlarm.setOnClickListener(this);
         binding.layoutNavi.btnPrivacy.setOnClickListener(this);
         binding.layoutNavi.btnManualnum.setOnClickListener(this);
+        binding.layoutNavi.btnSubs.setOnClickListener(this);
 
         binding.mainAutoscroll.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -219,6 +179,123 @@ public class MainActivity extends BaseAct implements View.OnClickListener {
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPurchaseClient = new PurchaseClient(act, StringUtil.KEY);
+        mPurchaseClient.connect(mServiceConnectionListener);
+    }
+
+    PurchaseClient.ServiceConnectionListener mServiceConnectionListener = new PurchaseClient.ServiceConnectionListener() {
+        @Override
+        public void onConnected() {
+            mPurchaseClient.isBillingSupportedAsync(StringUtil.IAP_API_VERSION, mBillingSupportedListener);
+            mPurchaseClient.queryPurchasesAsync(StringUtil.IAP_API_VERSION, productType, mQueryPurchaseListener);
+            Log.d("ONE", "Service connected");
+            //2. mBillingSupportedListener < 나도모름 / mQueryPurchaseListener << 구매 내역 들고오기
+        }
+
+        @Override
+        public void onDisconnected() {
+            Log.d("ONE", "Service disconnected");
+        }
+
+        @Override
+        public void onErrorNeedUpdateException() {
+            Log.e("ONE", "connect onError, 원스토어 서비스앱의 업데이트가 필요합니다");
+            PurchaseClient.launchUpdateOrInstallFlow(act);
+        }
+    };
+
+    PurchaseClient.BillingSupportedListener mBillingSupportedListener = new PurchaseClient.BillingSupportedListener() {
+
+        @Override
+        public void onSuccess() {
+            Log.d("ONE", "isBillingSupportedAsync onSuccess");
+        }
+
+        @Override
+        public void onError(IapResult result) {
+            Log.e("ONE", "isBillingSupportedAsync onError, " + result.toString());
+        }
+
+        @Override
+        public void onErrorRemoteException() {
+            Log.e("ONE", "isBillingSupportedAsync onError, 원스토어 서비스와 연결을 할 수 없습니다");
+        }
+
+        @Override
+        public void onErrorSecurityException() {
+            Log.e("ONE", "isBillingSupportedAsync onError, 비정상 앱에서 결제가 요청되었습니다");
+        }
+
+        @Override
+        public void onErrorNeedUpdateException() {
+            Log.e("ONE", "isBillingSupportedAsync onError, 원스토어 서비스앱의 업데이트가 필요합니다");
+        }
+    };
+
+
+    PurchaseClient.QueryPurchaseListener mQueryPurchaseListener = new PurchaseClient.QueryPurchaseListener() {
+        @Override
+        public void onSuccess(List<PurchaseData> purchaseDataList, String productType) {
+
+
+            Log.d("one", "queryPurchasesAsync onSuccess, " + purchaseDataList.toString());
+            //구독
+            if (purchaseDataList.size() > 0) {
+                for (int i = 0; i < purchaseDataList.size(); i++) {
+                    purchaseId = purchaseDataList.get(i);
+                    Log.i(StringUtil.TAG, "purchaseDataList.get(" + i + "): " + purchaseDataList.get(i).toString());
+                    if (purchaseDataList.get(i).getRecurringState() == 0) {
+                        //  구독중
+                        UserPref.saveSubscriptionId(act, purchaseDataList.get(i).getProductId());
+                        UserPref.saveSubscriptionState(act, true);
+                        binding.layoutNavi.tvSubs.setText("월정액 해지");
+
+                    } else if (purchaseDataList.get(i).getRecurringState() == 1) {
+                        //  구독 해지중
+                        UserPref.saveSubscriptionId(act, purchaseDataList.get(i).getProductId());
+                        UserPref.saveSubscriptionState(act, true);
+                        binding.layoutNavi.tvSubs.setText("월정액 해지취소");
+
+                    } else if (purchaseDataList.get(i).getRecurringState() == -1) {
+                        //  구독 X
+                        UserPref.saveSubscriptionId(act, "");
+                        UserPref.saveSubscriptionState(act, false);
+                        binding.layoutNavi.tvSubs.setText("월정액 해지");
+                    }
+                }
+            } else {
+                UserPref.saveSubscriptionId(act, "");
+                UserPref.saveSubscriptionState(act, false);
+            }
+
+            isListenerCalled = true;
+        }
+
+        @Override
+        public void onErrorRemoteException() {
+            Log.e("one", "queryPurchasesAsync onError, 원스토어 서비스와 연결을 할 수 없습니다");
+        }
+
+        @Override
+        public void onErrorSecurityException() {
+            Log.e("one", "queryPurchasesAsync onError, 비정상 앱에서 결제가 요청되었습니다");
+        }
+
+        @Override
+        public void onErrorNeedUpdateException() {
+            Log.e("one", "queryPurchasesAsync onError, 원스토어 서비스앱의 업데이트가 필요합니다");
+        }
+
+        @Override
+        public void onError(IapResult result) {
+            Log.e("one", "queryPurchasesAsync onError, " + result.toString());
+        }
+    };
+
 
     @Override
     public void onBackPressed() {
@@ -389,9 +466,60 @@ public class MainActivity extends BaseAct implements View.OnClickListener {
         recentInfo.execute(true, true);
     }
 
+
+
+    /*
+     * PurchaseClient의 manageRecurringProductAsync API (월정액상품 상태변경) 콜백 리스너
+     */
+    PurchaseClient.ManageRecurringProductListener mManageRecurringProductListener = new PurchaseClient.ManageRecurringProductListener() {
+        @Override
+        public void onSuccess(PurchaseData purchaseData, String manageAction) {
+            mPurchaseClient.queryPurchasesAsync(StringUtil.IAP_API_VERSION, productType, mQueryPurchaseListener);
+        }
+
+        @Override
+        public void onErrorRemoteException() {
+            Log.e(StringUtil.TAG, "manageRecurringProductAsync onError, 원스토어 서비스와 연결을 할 수 없습니다");
+        }
+
+        @Override
+        public void onErrorSecurityException() {
+            Log.e(StringUtil.TAG, "manageRecurringProductAsync onError, 비정상 앱에서 결제가 요청되었습니다");
+        }
+
+        @Override
+        public void onErrorNeedUpdateException() {
+            Log.e(StringUtil.TAG, "manageRecurringProductAsync onError, 원스토어 서비스앱의 업데이트가 필요합니다");
+        }
+
+        @Override
+        public void onError(IapResult result) {
+            Log.e(StringUtil.TAG, "manageRecurringProductAsync onError, " + result.toString());
+        }
+    };
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_subs:
+                if (isListenerCalled) {
+                    if (UserPref.getSubscriptionState(act)) {
+                        if (purchaseId.getRecurringState() == 0) {
+                            //구독취소
+                            mPurchaseClient.manageRecurringProductAsync(5, purchaseId, "cancel", mManageRecurringProductListener);
+                        } else if (purchaseId.getRecurringState() == 1) {
+                            //구독취소중임
+                            //구독취소해제
+                            mPurchaseClient.manageRecurringProductAsync(5, purchaseId, "reactivate", mManageRecurringProductListener);
+                        }
+                    } else {
+                        Toast.makeText(act, "이용중인 상품이 없습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(act, "결제정보를 불러오고 있습니다. 잠시후에 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                }
+                break;
             case R.id.btn_topqrscan:
                 startActivity(new Intent(this, ScannerAct.class));
                 break;

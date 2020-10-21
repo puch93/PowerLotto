@@ -35,6 +35,7 @@ import com.kakao.message.template.FeedTemplate;
 import com.kakao.message.template.LinkObject;
 import com.kakao.network.ErrorResult;
 import com.kakao.network.callback.ResponseCallback;
+import com.onestore.iap.api.PurchaseClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -104,7 +105,7 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
         binding.layoutResultview.btnSavegallery.setOnClickListener(this);
 
         // 결제 체크
-        checkTicket();
+//        checkTicket();
         // 결제 제거
 //        isPay = true;
 
@@ -116,12 +117,11 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (binding.ivPopback.getVisibility() == View.VISIBLE){
                     return true;
-                }else {
+                } else {
                     return false;
                 }
             }
         });
-
     }
 
     private void setTextTypeface(){
@@ -865,19 +865,15 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                 finish();
                 break;
             case R.id.btn_oddeven:
-//                checkTicket();
                 setBtnSelected(0);
                 break;
             case R.id.btn_combination:
-//                checkTicket();
                 setBtnSelected(1);
                 break;
             case R.id.btn_winning2:
-//                checkTicket();
                 setBtnSelected(2);
                 break;
             case R.id.btn_rangestatistics:
-//                checkTicket();
                 setBtnSelected(3);
                 break;
             case R.id.btn_makenum:
@@ -887,7 +883,7 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                     return;
                 }
 
-                if (!isPay){
+                if (!UserPref.getSubscriptionState(getApplicationContext())){
                     Toast.makeText(this, "이용권 구입 후 사용가능 합니다.", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this, PaymentDlg.class));
                     return;
