@@ -52,7 +52,6 @@ public class PremiumAct extends BaseAct implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_premium2);
         act = this;
 
