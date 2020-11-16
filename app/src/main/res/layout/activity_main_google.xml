@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/main_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tool:openDrawer="left">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/c_mainback"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ttl_bg"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp">
+
+                <ImageView
+                    android:id="@+id/btn_drawermenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/menu" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/logo" />
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:padding="4dp"-->
+                <!--android:text="파워로또" />-->
+
+                <ImageView
+                    android:id="@+id/btn_topqrscan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/top_qr" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_mainbg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/main_bg"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/main_pagerarea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <FrameLayout
+                            android:id="@+id/btn_pre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:padding="20dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/m_arrow" />
+
+                        </FrameLayout>
+
+                        <kr.core.powerlotto.customWidget.AutoScrollViewPagerX
+                            android:id="@+id/main_autoscroll"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <FrameLayout
+                            android:id="@+id/btn_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:padding="20dp"
+                            android:rotation="180">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/m_arrow" />
+
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/winnum_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/m_ball_box"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/main_pagerarea">
+                        <!--app:layout_constraintTop_toBottomOf="@+id/iv_mainbg"-->
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:shimmer_auto_start="true"
+                                app:shimmer_base_alpha="1"
+                                app:shimmer_base_color="@color/c_white"
+                                app:shimmer_colored="false"
+                                app:shimmer_duration="2000"
+                                app:shimmer_highlight_alpha="0.1">
+
+                                <TextView
+                                    android:id="@+id/tv_num1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="4dp"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:textColor="@color/c_white"
+                                    android:textStyle="bold" />
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:shimmer_auto_start="true"
+                                app:shimmer_base_alpha="1"
+                                app:shimmer_base_color="@color/c_white"
+                                app:shimmer_colored="false"
+                                app:shimmer_duration="2000"
+                                app:shimmer_highlight_alpha="0.1">
+
+                                <TextView
+                                    android:id="@+id/tv_num2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="4dp"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:textColor="@color/c_white" />
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:shimmer_auto_start="true"
+                                app:shimmer_base_alpha="1"
+                                app:shimmer_base_color="@color/c_white"
+                                app:shimmer_colored="false"
+                                app:shimmer_duration="2000"
+                                app:shimmer_highlight_alpha="0.1">
+
+                                <TextView
+                                    android:id="@+id/tv_num3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="4dp"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:textColor="@color/c_white"
+                                    android:textStyle="bold" />
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:shimmer_auto_start="true"
+                                app:shimmer_base_alpha="1"
+                                app:shimmer_base_color="@color/c_white"
+                                app:shimmer_colored="false"
+                                app:shimmer_duration="2000"
+                                app:shimmer_highlight_alpha="0.1">
+
+                                <TextView
+                                    android:id="@+id/tv_num4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="4dp"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:textColor="@color/c_white"
+                                    android:textStyle="bold" />
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:shimmer_auto_start="true"
+                                app:shimmer_base_alpha="1"
+                                app:shimmer_base_color="@color/c_white"
+                                app:shimmer_colored="false"
+                                app:shimmer_duration="2000"
+                                app:shimmer_highlight_alpha="0.1">
+
+                                <TextView
+                                    android:id="@+id/tv_num5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="4dp"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:textColor="@color/c_white"
+                                    android:textStyle="bold" />
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:shimmer_auto_start="true"
+                                app:shimmer_base_alpha="1"
+                                app:shimmer_base_color="@color/c_white"
+                                app:shimmer_colored="false"
+                                app:shimmer_duration="2000"
+                                app:shimmer_highlight_alpha="0.1">
+
+                                <TextView
+                                    android:id="@+id/tv_num6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="4dp"
+                                    android:gravity="center"
+                                    android:includeFontPadding="false"
+                                    android:textColor="@color/c_white"
+                                    android:textStyle="bold" />
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="4dp"
+                                android:src="@drawable/b_plus" />
+
+                            <com.facebook.shimmer.ShimmerFrameLayout
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                app:shimmer_auto_start="true"
+                                app:shimmer_base_alpha="1"
+                                app:shimmer_base_color="@color/c_white"
+                                app:shimmer_colored="false"
+                                app:shimmer_duration="2000"
+                                app:shimmer_highlight_alpha="0.1">
+
+                                <FrameLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/s_ball_bonus"
+                                    android:padding="4dp">
+
+                                    <TextView
+                                        android:id="@+id/tv_bonusnum"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:includeFontPadding="false"
+                                        android:textColor="@color/c_white"
+                                        android:textStyle="bold" />
+
+                                </FrameLayout>
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="총 담첨금액 약"
+                                android:textColor="@color/c_mainblack"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_totalamount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:textColor="@color/c_mainblack"
+                                android:textStyle="bold"
+                                tool:text="202억" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="4dp"
+                                android:text="1인당 약"
+                                android:textColor="#FF496D"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_winamount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#FF496D"
+                                android:textStyle="bold"
+                                tool:text="13억원" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/btn_mainqrscan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="103dp"
+                        android:background="@drawable/sel_btnqrscan"
+                        android:gravity="center"
+                        android:text="QR코드 확인"
+                        android:textColor="@color/c_white"
+                        android:textSize="@dimen/smiddle_text"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="@+id/winnum_area"
+                        app:layout_constraintRight_toRightOf="@+id/winnum_area"
+                        app:layout_constraintTop_toTopOf="@+id/winnum_area" />
+
+                    <kr.core.powerlotto.customWidget.CircleIndicator
+                        android:id="@+id/main_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btn_mainqrscan" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/btn_mainwinnum"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/iv_back1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/sel_btnmainmenu"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@drawable/m_icon01"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/iv_back1" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:text="당첨번호"
+                                android:textColor="@color/c_mainblack"
+                                android:textSize="@dimen/smiddle_text"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="@id/iv_back1"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <View
+                            android:layout_width="6dp"
+                            android:layout_height="match_parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/btn_maingoodplace"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/iv_back2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/sel_btnmainmenu"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@drawable/m_icon02"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/iv_back2" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:text="로또명당"
+                                android:textColor="@color/c_mainblack"
+                                android:textSize="@dimen/smiddle_text"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="@id/iv_back2"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <View
+                            android:layout_width="6dp"
+                            android:layout_height="match_parent" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/btn_mainrecievenum"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:id="@+id/iv_back3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/sel_btnmainmenu"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@drawable/m_icon03"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/iv_back3" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:text="받은번호"
+                                android:textColor="@color/c_mainblack"
+                                android:textSize="@dimen/smiddle_text"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="@id/iv_back3"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:orientation="horizontal">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/btn_mainmanual"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/iv_back4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:adjustViewBounds="true"
+                                    android:background="@drawable/sel_btnmainmenu"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:background="@drawable/m_icon04"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="@id/iv_back4" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:text="수동생성"
+                                    android:textColor="@color/c_mainblack"
+                                    android:textSize="@dimen/smiddle_text"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="@id/iv_back4"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <View
+                                android:layout_width="6dp"
+                                android:layout_height="match_parent" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/btn_mainrandnum"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/iv_back5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:adjustViewBounds="true"
+                                    android:background="@drawable/sel_btnmainmenu"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:background="@drawable/m_icon05"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="@id/iv_back5" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:text="랜덤생성"
+                                    android:textColor="@color/c_mainblack"
+                                    android:textSize="@dimen/smiddle_text"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="@id/iv_back5"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <View
+                                android:layout_width="6dp"
+                                android:layout_height="match_parent" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/btn_mainadvnum"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/iv_back6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:adjustViewBounds="true"
+                                    android:background="@drawable/sel_btnmainmenu"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="12dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:background="@drawable/m_icon06"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/iv_back6" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:text="고급생성"
+                                    android:textColor="@color/c_mainblack"
+                                    android:textSize="@dimen/smiddle_text"
+                                    android:textStyle="bold"
+                                    app:layout_constraintBottom_toBottomOf="@+id/iv_back6"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|top"
+                            android:src="@drawable/charge_emblem" />
+
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/coupa_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true" />
+            <!--            <FrameLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content">-->
+
+            <!--                <include-->
+            <!--                    android:id="@+id/banner_area"-->
+            <!--                    layout="@layout/banner_layout"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content" />-->
+
+            <!--            </FrameLayout>-->
+
+        </LinearLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/c_white">
+
+            <include
+                android:id="@+id/layout_navi"
+                layout="@layout/layout_drawer_google"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</layout>

@@ -37,7 +37,7 @@ public class StringUtil {
     public static final String URL_ONE_STORE_APP = "onestore://common/product/0000751716";
     public static final String URL_PLAY_STORE = "https://play.google.com/store/apps/details?id=kr.core.powerlotto";
 
-    public static final boolean isGoogle = false;
+    public static final boolean isGoogle = true;
 
     public static String getDeviceId(Context context) {
         String newId = null;

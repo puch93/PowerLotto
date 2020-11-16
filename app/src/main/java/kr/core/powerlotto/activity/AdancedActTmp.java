@@ -1,10 +1,12 @@
 package kr.core.powerlotto.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Build;
@@ -17,17 +19,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.zxing.integration.android.IntentIntegrator;
 import com.kakao.kakaolink.v2.KakaoLinkResponse;
 import com.kakao.kakaolink.v2.KakaoLinkService;
+import com.kakao.message.template.ButtonObject;
 import com.kakao.message.template.ContentObject;
 import com.kakao.message.template.FeedTemplate;
 import com.kakao.message.template.LinkObject;
 import com.kakao.network.ErrorResult;
 import com.kakao.network.callback.ResponseCallback;
+import com.onestore.iap.api.PurchaseClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,12 +73,14 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
     ProgressDialog pd;
 
     String imgUrl = "";
+    Activity act;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_advanced);
+        act = this;
 
         binding.topText1.setTypeface(app.jalnan);
         binding.topText2.setTypeface(app.jalnan);
@@ -97,7 +107,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
         binding.layoutResultview.btnSavegallery.setOnClickListener(this);
 
         // 결제 체크
-        checkTicket();
+//        checkTicket();
         // 결제 제거
 //        isPay = true;
 
@@ -107,7 +117,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
         binding.ivPopback.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (binding.ivPopback.getVisibility() == View.VISIBLE){
+                if (binding.ivPopback.getVisibility() == View.VISIBLE) {
                     return true;
                 } else {
                     return false;
@@ -116,7 +126,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
         });
     }
 
-    private void setTextTypeface(){
+    private void setTextTypeface() {
 
         binding.ballLayout.tvNum1.setTypeface(app.jalnan);
         binding.ballLayout.tvNum2.setTypeface(app.jalnan);
@@ -239,7 +249,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
         }
     }
 
-    private void initBalls(){
+    private void initBalls() {
         binding.ballLayout.tvNum1.setText("?");
         binding.ballLayout.tvNum1.setBackgroundResource(R.drawable.b_ball_grey);
         binding.ballLayout.tvNum2.setText("?");
@@ -303,16 +313,16 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                                 }
                             }
                         } else {
-                            Toast.makeText(AdancedActTmp.this, getString(R.string.net_errmsg) + "\n문제 : 수신 값이 없음", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 수신 값이 없음", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(AdancedActTmp.this, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Toast.makeText(AdancedActTmp.this, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -638,8 +648,8 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
 
     }
 
-    private void setLoseMsg(LinearLayout parentView){
-        LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_resultitem,null,false);
+    private void setLoseMsg(LinearLayout parentView) {
+        LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.layout_resultitem, null, false);
         TextView tv_episode = child.findViewById(R.id.tv_episode);
 
         tv_episode.setText(getString(R.string.lose_msg));
@@ -659,7 +669,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                         JSONObject jo = new JSONObject(resultData.getResult());
 
                         if (jo.getString("result").equalsIgnoreCase("fail")) {
-                            Toast.makeText(AdancedActTmp.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(act, jo.getString("msg"), Toast.LENGTH_SHORT).show();
                         } else {
 
                             JSONObject result = new JSONObject(jo.getString("result"));
@@ -674,7 +684,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
 
                                 Log.d(StringUtil.TAG, "res1: " + LottoUtil.resultStr(game));
                                 if (game.length() > 0) {
-                                    LottoUtil.resultAdd(game,binding.layoutResultview.resultTable.tvR1result,getLayoutInflater());
+                                    LottoUtil.resultAdd(game, binding.layoutResultview.resultTable.tvR1result, getLayoutInflater());
                                 } else {
                                     setLoseMsg(binding.layoutResultview.resultTable.tvR1result);
                                 }
@@ -687,7 +697,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
 
                                 Log.d(StringUtil.TAG, "res2: " + LottoUtil.resultStr(game));
                                 if (game.length() > 0) {
-                                    LottoUtil.resultAdd(game,binding.layoutResultview.resultTable.tvR2result,getLayoutInflater());
+                                    LottoUtil.resultAdd(game, binding.layoutResultview.resultTable.tvR2result, getLayoutInflater());
                                 } else {
                                     setLoseMsg(binding.layoutResultview.resultTable.tvR2result);
                                 }
@@ -700,7 +710,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
 
                                 Log.d(StringUtil.TAG, "res3: " + LottoUtil.resultStr(game));
                                 if (game.length() > 0) {
-                                    LottoUtil.resultAdd(game,binding.layoutResultview.resultTable.tvR3result,getLayoutInflater());
+                                    LottoUtil.resultAdd(game, binding.layoutResultview.resultTable.tvR3result, getLayoutInflater());
                                 } else {
                                     setLoseMsg(binding.layoutResultview.resultTable.tvR3result);
                                 }
@@ -713,7 +723,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
 
                                 Log.d(StringUtil.TAG, "res4: " + LottoUtil.resultStr(game));
                                 if (game.length() > 0) {
-                                    LottoUtil.resultAdd(game,binding.layoutResultview.resultTable.tvR4result,getLayoutInflater());
+                                    LottoUtil.resultAdd(game, binding.layoutResultview.resultTable.tvR4result, getLayoutInflater());
                                 } else {
                                     setLoseMsg(binding.layoutResultview.resultTable.tvR4result);
                                 }
@@ -726,7 +736,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
 
                                 Log.d(StringUtil.TAG, "res5: " + LottoUtil.resultStr(game));
                                 if (game.length() > 0) {
-                                    LottoUtil.resultAdd(game,binding.layoutResultview.resultTable.tvR5result,getLayoutInflater());
+                                    LottoUtil.resultAdd(game, binding.layoutResultview.resultTable.tvR5result, getLayoutInflater());
                                 } else {
                                     setLoseMsg(binding.layoutResultview.resultTable.tvR5result);
                                 }
@@ -736,11 +746,11 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(AdancedActTmp.this, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Toast.makeText(AdancedActTmp.this, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -804,7 +814,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(AdancedActTmp.this, msg, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(act, msg, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -814,7 +824,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(AdancedActTmp.this, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
@@ -822,7 +832,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(AdancedActTmp.this, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -857,19 +867,15 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                 finish();
                 break;
             case R.id.btn_oddeven:
-//                checkTicket();
                 setBtnSelected(0);
                 break;
             case R.id.btn_combination:
-//                checkTicket();
                 setBtnSelected(1);
                 break;
             case R.id.btn_winning2:
-//                checkTicket();
                 setBtnSelected(2);
                 break;
             case R.id.btn_rangestatistics:
-//                checkTicket();
                 setBtnSelected(3);
                 break;
             case R.id.btn_makenum:
@@ -879,7 +885,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                     return;
                 }
 
-                if (!isPay){
+                if (!UserPref.getSubscriptionState(getApplicationContext())) {
                     Toast.makeText(this, "이용권 구입 후 사용가능 합니다.", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this, PaymentDlg.class));
                     return;
@@ -1014,7 +1020,7 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(AdancedActTmp.this, "공유이미지 생성 중입니다. 잠시만 기다려 주세요.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(act, "공유이미지 생성 중입니다. 잠시만 기다려 주세요.", Toast.LENGTH_SHORT).show();
                                 File tmpFile = null;
                                 try {
                                     tmpFile = File.createTempFile("uploadimg", ".jpg", getCacheDir());
@@ -1046,21 +1052,21 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                                     if (pd.isShowing()) {
                                         pd.dismiss();
                                     }
-                                    Toast.makeText(AdancedActTmp.this, "천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(act, "천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                     isMekeFile = false;
                                     if (pd.isShowing()) {
                                         pd.dismiss();
                                     }
-                                    Toast.makeText(AdancedActTmp.this, "천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(act, "천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
                                 }
 
                                 imgUpload(tmpFile);
                             }
                         });
                     } else {
-                        Toast.makeText(AdancedActTmp.this, "파일 생성중입니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, "파일 생성중입니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -1111,9 +1117,9 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                                     fos.close();
                                 } catch (FileNotFoundException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(AdancedActTmp.this, "파일을 저장하고 있습니다. 천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(act, "파일을 저장하고 있습니다. 천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
                                 } catch (IOException e) {
-                                    Toast.makeText(AdancedActTmp.this, "파일을 저장하고 있습니다. 천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(act, "파일을 저장하고 있습니다. 천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
                                     e.printStackTrace();
                                 }
 
@@ -1126,13 +1132,13 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                         });
 
                         isMekeFile = false;
-                        Toast.makeText(AdancedActTmp.this, "저장 되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, "저장 되었습니다.", Toast.LENGTH_SHORT).show();
                         if (pd.isShowing()) {
                             pd.dismiss();
                         }
 
                     } else {
-                        Toast.makeText(AdancedActTmp.this, "파일 생성중입니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, "파일 생성중입니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -1162,16 +1168,16 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
                         } else {
                             // 이용권 없음, 날짜 만료
                             isPay = false;
-//                            Toast.makeText(AdancedAct.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(act, jo.getString("msg"), Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(AdancedActTmp.this, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Toast.makeText(AdancedActTmp.this, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -1240,8 +1246,8 @@ public class AdancedActTmp extends BaseAct implements View.OnClickListener {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (
-                    checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                    checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
             ) {
                 return true;
             } else {

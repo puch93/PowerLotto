@@ -15,29 +15,19 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
-import android.provider.Telephony;
 import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 
 import com.android.billingclient.api.Purchase;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
-import com.onestore.iap.api.IapEnum;
-import com.onestore.iap.api.IapResult;
-import com.onestore.iap.api.PurchaseClient;
-import com.onestore.iap.api.PurchaseData;
-
-import io.fabric.sdk.android.Fabric;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,11 +36,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.UUID;
 
 import kr.core.powerlotto.R;
 import kr.core.powerlotto.billing.BillingManager;
@@ -58,7 +46,6 @@ import kr.core.powerlotto.insidedata.UserPref;
 import kr.core.powerlotto.network.ReqBasic;
 import kr.core.powerlotto.network.netUtil.HttpResult;
 import kr.core.powerlotto.network.netUtil.NetUrls;
-import kr.core.powerlotto.reciever.AlarmReceiver;
 import kr.core.powerlotto.util.CoupangReceiver;
 import kr.core.powerlotto.util.StringUtil;
 
@@ -67,16 +54,12 @@ public class SplashAct extends BaseAct {
     BillingManager billingManager;
     private static final int OVERLAY = 1003;
     Activity act;
+    String subState;
 
     private Timer timer = new Timer();
     boolean isReady = true;
     String fcm_token;
 
-    /* one store billing */
-    private static final String SUBS_ID = "subs_removal_ads";
-    private static final int PURCHASE_REQUEST = 9500;
-    String productType = "auto";
-    PurchaseClient mPurchaseClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,111 +116,21 @@ public class SplashAct extends BaseAct {
 
 
     private void billingCheck() {
-        mPurchaseClient = new PurchaseClient(act, StringUtil.KEY);
-        mPurchaseClient.connect(mServiceConnectionListener);
-    }
-
-    PurchaseClient.ServiceConnectionListener mServiceConnectionListener = new PurchaseClient.ServiceConnectionListener() {
-        @Override
-        public void onConnected() {
-            mPurchaseClient.isBillingSupportedAsync(StringUtil.IAP_API_VERSION, mBillingSupportedListener);
-            mPurchaseClient.queryPurchasesAsync(StringUtil.IAP_API_VERSION, productType, mQueryPurchaseListener);
-            Log.d("ONE", "Service connected");
-            //2. mBillingSupportedListener < 나도모름 / mQueryPurchaseListener << 구매 내역 들고오기
-        }
-
-        @Override
-        public void onDisconnected() {
-            Log.d("ONE", "Service disconnected");
-        }
-
-        @Override
-        public void onErrorNeedUpdateException() {
-            Log.e("ONE", "connect onError, 원스토어 서비스앱의 업데이트가 필요합니다");
-            PurchaseClient.launchUpdateOrInstallFlow(act);
-        }
-    };
-
-    PurchaseClient.BillingSupportedListener mBillingSupportedListener = new PurchaseClient.BillingSupportedListener() {
-
-        @Override
-        public void onSuccess() {
-            Log.d("ONE", "isBillingSupportedAsync onSuccess");
-        }
-
-        @Override
-        public void onError(IapResult result) {
-            Log.e("ONE", "isBillingSupportedAsync onError, " + result.toString());
-        }
-
-        @Override
-        public void onErrorRemoteException() {
-            Log.e("ONE", "isBillingSupportedAsync onError, 원스토어 서비스와 연결을 할 수 없습니다");
-        }
-
-        @Override
-        public void onErrorSecurityException() {
-            Log.e("ONE", "isBillingSupportedAsync onError, 비정상 앱에서 결제가 요청되었습니다");
-        }
-
-        @Override
-        public void onErrorNeedUpdateException() {
-            Log.e("ONE", "isBillingSupportedAsync onError, 원스토어 서비스앱의 업데이트가 필요합니다");
-        }
-    };
-
-
-    PurchaseClient.QueryPurchaseListener mQueryPurchaseListener = new PurchaseClient.QueryPurchaseListener() {
-        @Override
-        public void onSuccess(List<PurchaseData> purchaseDataList, String productType) {
-            Log.d("one", "queryPurchasesAsync onSuccess, " + purchaseDataList.toString());
-            //구독
-            if (purchaseDataList.size() > 0) {
-                for (int i = 0; i < purchaseDataList.size(); i++) {
-                    Log.i(StringUtil.TAG, "purchaseDataList.get(" + i + "): " + purchaseDataList.get(i).toString());
-                    if (purchaseDataList.get(i).getRecurringState() == 0) {
-                        //  구독중
-                        UserPref.saveSubscriptionId(act, purchaseDataList.get(i).getProductId());
-                        UserPref.saveSubscriptionState(act, true);
-                    } else if (purchaseDataList.get(i).getRecurringState() == 1) {
-                        //  구독 해지중
-                        UserPref.saveSubscriptionId(act, purchaseDataList.get(i).getProductId());
-                        UserPref.saveSubscriptionState(act, true);
-                    } else if (purchaseDataList.get(i).getRecurringState() == -1) {
-                        //  구독 X
-                        UserPref.saveSubscriptionId(act, "");
-                        UserPref.saveSubscriptionState(act, false);
-                    }
-                }
-            } else {
-                UserPref.saveSubscriptionId(act, "");
-                UserPref.saveSubscriptionState(act, false);
+        billingManager = new BillingManager(this, new BillingManager.AfterBilling() {
+            @Override
+            public void sendResult(Purchase purchase) {
+                // 서버로 값 전송(결제 완료)
             }
 
-            moveMain();
-        }
-
-        @Override
-        public void onErrorRemoteException() {
-            Log.e("one", "queryPurchasesAsync onError, 원스토어 서비스와 연결을 할 수 없습니다");
-        }
-
-        @Override
-        public void onErrorSecurityException() {
-            Log.e("one", "queryPurchasesAsync onError, 비정상 앱에서 결제가 요청되었습니다");
-        }
-
-        @Override
-        public void onErrorNeedUpdateException() {
-            Log.e("one", "queryPurchasesAsync onError, 원스토어 서비스앱의 업데이트가 필요합니다");
-        }
-
-        @Override
-        public void onError(IapResult result) {
-            Log.e("one", "queryPurchasesAsync onError, " + result.toString());
-        }
-    };
-
+            @Override
+            public void getSubsriptionState(String subscription, Purchase purchase) {
+                // subscription = Y : 구독중, N : 구독X
+                Log.d(StringUtil.TAG, "getSubsriptionState: " + subscription);
+                subState = subscription;
+                moveMain();
+            }
+        });
+    }
 
     private boolean isReqPermission() {
         // 필요권한 ( 전화 걸기 및 관리, 메세지 전송 및 보기, 주소록 액세스, 사진 및 미디어 파일 액세스, 위치정보)
@@ -404,7 +297,7 @@ public class SplashAct extends BaseAct {
         } else {
             userInfo.addParams("hp", cellnum.replaceFirst("[+]82", "0"));
         }
-        userInfo.addParams("subscription", UserPref.getSubscriptionState(act) ? "Y" : "N");
+        userInfo.addParams("subscription", subState);
 
 //        userInfo.addParams("hp","01000000000");
         userInfo.addParams("m_device_model", Build.MODEL);

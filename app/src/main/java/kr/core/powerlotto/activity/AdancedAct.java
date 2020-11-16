@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Build;
@@ -19,23 +18,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.zxing.integration.android.IntentIntegrator;
 import com.kakao.kakaolink.v2.KakaoLinkResponse;
 import com.kakao.kakaolink.v2.KakaoLinkService;
-import com.kakao.message.template.ButtonObject;
 import com.kakao.message.template.ContentObject;
 import com.kakao.message.template.FeedTemplate;
 import com.kakao.message.template.LinkObject;
 import com.kakao.network.ErrorResult;
 import com.kakao.network.callback.ResponseCallback;
-import com.onestore.iap.api.PurchaseClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,6 +55,7 @@ import kr.core.powerlotto.util.StringUtil;
 public class AdancedAct extends BaseAct implements View.OnClickListener {
 
     ActivityAdvancedBinding binding;
+    Activity act;
 
     ArrayList<Integer> randNums = new ArrayList<>();
     HashMap<String, ArrayList<Integer>> randTable = new HashMap<>();
@@ -79,6 +73,7 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_advanced);
+        act = this;
 
         binding.topText1.setTypeface(app.jalnan);
         binding.topText2.setTypeface(app.jalnan);
@@ -105,7 +100,7 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
         binding.layoutResultview.btnSavegallery.setOnClickListener(this);
 
         // 결제 체크
-//        checkTicket();
+        checkTicket();
         // 결제 제거
 //        isPay = true;
 
@@ -311,16 +306,16 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                                 }
                             }
                         } else {
-                            Toast.makeText(AdancedAct.this, getString(R.string.net_errmsg) + "\n문제 : 수신 값이 없음", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 수신 값이 없음", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(AdancedAct.this, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Toast.makeText(AdancedAct.this, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -667,7 +662,7 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                         JSONObject jo = new JSONObject(resultData.getResult());
 
                         if (jo.getString("result").equalsIgnoreCase("fail")) {
-                            Toast.makeText(AdancedAct.this, jo.getString("msg"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(act, jo.getString("msg"), Toast.LENGTH_SHORT).show();
                         } else {
 
                             JSONObject result = new JSONObject(jo.getString("result"));
@@ -744,11 +739,11 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(AdancedAct.this, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Toast.makeText(AdancedAct.this, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -812,7 +807,7 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(AdancedAct.this, msg, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(act, msg, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -822,7 +817,7 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(AdancedAct.this, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
@@ -830,7 +825,7 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(AdancedAct.this, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -865,15 +860,19 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                 finish();
                 break;
             case R.id.btn_oddeven:
+//                checkTicket();
                 setBtnSelected(0);
                 break;
             case R.id.btn_combination:
+//                checkTicket();
                 setBtnSelected(1);
                 break;
             case R.id.btn_winning2:
+//                checkTicket();
                 setBtnSelected(2);
                 break;
             case R.id.btn_rangestatistics:
+//                checkTicket();
                 setBtnSelected(3);
                 break;
             case R.id.btn_makenum:
@@ -883,7 +882,7 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                     return;
                 }
 
-                if (!UserPref.getSubscriptionState(getApplicationContext())){
+                if (!isPay){
                     Toast.makeText(this, "이용권 구입 후 사용가능 합니다.", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this, PaymentDlg.class));
                     return;
@@ -1018,7 +1017,7 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(AdancedAct.this, "공유이미지 생성 중입니다. 잠시만 기다려 주세요.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(act, "공유이미지 생성 중입니다. 잠시만 기다려 주세요.", Toast.LENGTH_SHORT).show();
                                 File tmpFile = null;
                                 try {
                                     tmpFile = File.createTempFile("uploadimg", ".jpg", getCacheDir());
@@ -1050,21 +1049,21 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                                     if (pd.isShowing()) {
                                         pd.dismiss();
                                     }
-                                    Toast.makeText(AdancedAct.this, "천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(act, "천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                     isMekeFile = false;
                                     if (pd.isShowing()) {
                                         pd.dismiss();
                                     }
-                                    Toast.makeText(AdancedAct.this, "천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(act, "천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
                                 }
 
                                 imgUpload(tmpFile);
                             }
                         });
                     } else {
-                        Toast.makeText(AdancedAct.this, "파일 생성중입니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, "파일 생성중입니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -1115,9 +1114,9 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                                     fos.close();
                                 } catch (FileNotFoundException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(AdancedAct.this, "파일을 저장하고 있습니다. 천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(act, "파일을 저장하고 있습니다. 천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
                                 } catch (IOException e) {
-                                    Toast.makeText(AdancedAct.this, "파일을 저장하고 있습니다. 천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(act, "파일을 저장하고 있습니다. 천천히 시도해주세요.", Toast.LENGTH_SHORT).show();
                                     e.printStackTrace();
                                 }
 
@@ -1130,13 +1129,13 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
                         });
 
                         isMekeFile = false;
-                        Toast.makeText(AdancedAct.this, "저장 되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, "저장 되었습니다.", Toast.LENGTH_SHORT).show();
                         if (pd.isShowing()) {
                             pd.dismiss();
                         }
 
                     } else {
-                        Toast.makeText(AdancedAct.this, "파일 생성중입니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, "파일 생성중입니다.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -1171,11 +1170,11 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(AdancedAct.this, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 데이터 형태", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
-                    Toast.makeText(AdancedAct.this, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(act, getString(R.string.net_errmsg) + "\n문제 : 값이 없음", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -1244,8 +1243,8 @@ public class AdancedAct extends BaseAct implements View.OnClickListener {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (
-                    checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                            checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                    checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
             ) {
                 return true;
             } else {
